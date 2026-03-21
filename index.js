@@ -1,10 +1,8 @@
-const app = require('express')();   //  it's a function
+const express = require('express'); // here is part of the middleware  
+const app = express(); //  it's a function
 const PORT = 8080;
 
-app.listen(
-    PORT,
-    () => console.log(`it's alive on http://localhost:${PORT}`) // test it using node . on Terminal
-)
+app.use( express.json()); // here is the middleware
 
 // adding get endpoint
 app.get('/cars', (req, res) => { // that's the route
@@ -25,6 +23,10 @@ app.post('/cars/:id', (req, res) => { // using route params for every car have a
     }
 
     res.send({
-        cars: `car wuth your ${image} and ID of ${id}`,
+        cars: `car with your ${image} and ID of ${id}`,
     });
+});
+
+app.listen(PORT, () => {
+    console.log(`It's alive on http://localhost:${PORT}`);
 });
