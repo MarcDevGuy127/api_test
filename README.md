@@ -6,3 +6,7 @@ That repo is dedicated to test an api.
 `npm init -y`
 
 `npm install express`
+
+`node .`
+
+Conect the reposit .git with Postman/insomnia/etc
