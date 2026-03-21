@@ -16,4 +16,15 @@ app.get('/cars', (req, res) => { // that's the route
 });
 
 // adding post endpoint
-app.post('');
+app.post('/cars/:id', (req, res) => { // using route params for every car have a id
+    const { id } = req.params;
+    const { image } = req.body;
+
+    if (!image) {
+        res.status(418).send({ message: 'We need a image!' })
+    }
+
+    res.send({
+        cars: `car wuth your ${image} and ID of ${id}`,
+    });
+});

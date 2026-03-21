@@ -9,4 +9,3 @@ That repo is dedicated to test an api.
 
 `node .`
 
-Conect the reposit .git with Postman/insomnia/etc
