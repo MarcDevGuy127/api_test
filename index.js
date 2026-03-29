@@ -2,7 +2,7 @@ const express = require('express'); // here is part of the middleware
 const app = express(); //  it's a function
 const PORT = 8080;
 
-app.use( express.json()); // here is the middleware
+app.use(express.json()); // here is the middleware
 
 // adding get endpoint
 app.get('/cars', (req, res) => { // that's the route
