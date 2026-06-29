@@ -27,6 +27,42 @@ app.post('/produtos', (req, res) => {
     res.status(201).json(novoProduto);
 });
 
+// PUT - Update specified product
+app.put('/produtos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const { nome } = req.body;
+
+    const produto = produtos.find(p => p.id === id);
+
+    if (!produto) {
+        return res.status(404).json({
+            erro: "Produto não encontrado."
+        });
+    }
+
+    produto.nome = nome;
+
+    res.status(200).json(produto);
+    /*    try {
+        const { id } = req.params; // requesting id param
+        const { nome } = req.body; // requesting product 'name' on 
+        
+        const produtoAtualizado  = await produtos.findByIdAndUpdate(
+            id,
+            { nome },
+            { new: true, runValidators: true }
+        );
+
+        if (!produtoAtualizado) {
+            return res.status(404).json({ erro: 'Product not found'});
+        }
+
+        res.status(200).json(produtoAtualizado);
+    } catch (error) {
+        res.status(400).json({ erro: 'Error to product update', detalhes: error.message});
+    }*/
+});
+
 
 /*
 // adding get endpoint
