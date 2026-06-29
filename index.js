@@ -63,6 +63,24 @@ app.put('/produtos/:id', (req, res) => {
     }*/
 });
 
+// DELETE - Delete specified product
+app.delete('/produtos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const indice = produtos.findIndex(produto => produto.id === id);
+
+    if (indice === -1) {
+        return res.status(404).json({
+            erro: "Produto não encontrado."
+        });
+    }
+
+    produtos.splice(indice, 1);
+
+    res.status(200).json({
+        mensagem: "Produto removido com sucesso."
+    });
+});
 
 /*
 // adding get endpoint
