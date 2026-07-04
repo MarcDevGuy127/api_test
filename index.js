@@ -59,24 +59,6 @@ app.put('/produtos/:id', (req, res) => {
     produto.nome = nome;
 
     res.status(200).json(produto);
-    /*    try {
-        const { id } = req.params; // requesting id param
-        const { nome } = req.body; // requesting product 'name' on 
-        
-        const produtoAtualizado  = await produtos.findByIdAndUpdate(
-            id,
-            { nome },
-            { new: true, runValidators: true }
-        );
-
-        if (!produtoAtualizado) {
-            return res.status(404).json({ erro: 'Product not found'});
-        }
-
-        res.status(200).json(produtoAtualizado);
-    } catch (error) {
-        res.status(400).json({ erro: 'Error to product update', detalhes: error.message});
-    }*/
 });
 
 // DELETE - Delete specified product
@@ -98,37 +80,6 @@ app.delete('/produtos/:id', (req, res) => {
     });
 });
 
-/*
-// adding get endpoint
-app.get('/cars', (req, res) => { // that's the route
-    res.status(200).send({
-        name: 'Rev Rod',
-        car: 'vrum vrumm',
-        year: '2014'
-    }) 
-});
-
-app.post('/cars', (req, res)) => {
-    const newCar = {
-        name: req.body.name  
-    };
-}
-
-
-// adding post endpoint
-app.post('/cars/:id', (req, res) => { // using route params for every car have a id
-    const { id } = req.params;
-    const { image } = req.body;
-
-    if (!image) {
-        res.status(418).send({ message: 'We need a image!' })
-    }
-
-    res.send({
-        cars: `car with your ${image} and ID of ${id}`,
-    });
-});
-*/
 app.listen(PORT, () => {
     console.log(`API rodando com sucesso em: http://localhost:${PORT}`);
 });
