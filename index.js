@@ -1,7 +1,7 @@
 const express = require('express'); // here is part of the middleware  
 const req = require('express/lib/request');
 const app = express(); //  it's a function
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json()); // here is the middleware to read JSON
 
@@ -11,10 +11,26 @@ let produtos = [
     { id: 2, nome: 'Mouse Gamer'}
 ];
 
-// GET - Return the products list
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+// GET - Return the products list without specified id
 app.get('/produtos', (req, res) => { // that's the route
     res.status(200).json(produtos);
 });
+
+// GET - Return the products list when consult specified id
+app.get('/produtos/:id', (req, res) => { // that's the route
+    const catalogo = produtos.find(p => p.id === parseInt(req.params.id));
+    if (!catalogo) res.status(404).send('O produto com o ID informado não existe');
+    res.send(catalogo);
+});
+
+// query
+/*app.get('/produtos/:id', (req, res) => {
+    res.send(req.query);
+});*/
 
 // POST - Add new product
 app.post('/produtos', (req, res) => {
@@ -27,7 +43,7 @@ app.post('/produtos', (req, res) => {
     res.status(201).json(novoProduto);
 });
 
-// PUT - Update specified product
+// PUT - Update product with specified id
 app.put('/produtos/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const { nome } = req.body;
