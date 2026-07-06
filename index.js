@@ -23,7 +23,7 @@ app.get('/produtos', (req, res) => { // that's the route
 // GET - Return the products list when consult specified id
 app.get('/produtos/:id', (req, res) => { // that's the route
     const catalogo = produtos.find(p => p.id === parseInt(req.params.id));
-    if (!catalogo) res.status(404).send('O produto com o ID informado não existe');
+    if (!catalogo) return res.status(404).send('O produto com o ID informado não existe');
     res.send(catalogo);
 });
 
